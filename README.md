@@ -1,5 +1,6 @@
 # gaming_platform
 
+vue项目模板
 ## Project setup
 ```
 npm install
