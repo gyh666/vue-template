@@ -10,7 +10,7 @@ Vue.use(ElementUI);
 import axios from "./utils/http";
 Vue.prototype.$axios = axios;
 
-import "./assets/style/main.scss";
+import "./style/main.scss";
 
 Vue.config.productionTip = false;
 

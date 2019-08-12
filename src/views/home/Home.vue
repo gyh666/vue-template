@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { apiTestGet } from "@/utils/api";
+// import { apiTestGet } from "@/utils/api";
 
 export default {
   name: "home",
@@ -21,15 +21,15 @@ export default {
     };
   },
   created() {
-    this.login();
+    // this.login();
   },
   methods: {
-    async login() {
-      let { code, message, result } = await apiTestGet(this.form);
-      console.log(result);
-      if (code !== 200) return this.$message(message);
-      this.result = result;
-    }
+    // async login() {
+    //   let { code, message, result } = await apiTestGet(this.form);
+    //   console.log(result);
+    //   if (code !== 200) return this.$message(message);
+    //   this.result = result;
+    // }
   }
 };
 </script>
