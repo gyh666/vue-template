@@ -1,6 +1,5 @@
-# gaming_platform
+# vue-cli3 tempalte
 
-<<<<<<< HEAD
 ## 目录结构
 ```
 ├── src                        // 源代码
@@ -43,7 +42,7 @@
 >https://www.jb51.net/article/145341.htm
 
 >https://www.jianshu.com/p/bfc0650f0033
->>>>>>> 1d02865596b5362d664ca5ef0e5e3808b3bba8b3
+
 ## Project setup
 ```
 npm install
