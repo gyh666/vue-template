@@ -1,0 +1,67 @@
+@import "./vars.scss";
+
+.login .el-card {
+  width: 530px;
+  // height: 612px;
+  background-color: $bgColor;
+  position: fixed;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+
+  .el-card__body {
+    height: 100%;
+  }
+
+  .el-input__prefix > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(50%, -50%);
+  }
+
+  .el-input--prefix .el-input__inner {
+    width: 100%;
+    height: 75px;
+    box-sizing: border-box;
+    padding-left: 70px;
+    padding-right: 30px;
+    font-size: 21px;
+  }
+}
+
+// 表格样式
+.el-table {
+  border: 1px solid #EBEEF5;
+  margin-top: 30px;
+}
+
+.el-pagination {
+  margin-top: 30px;
+  margin-right: 10px;
+  text-align: right;
+}
+
+.tabs {
+  margin: 20px 20px 0;
+
+  .el-tabs--card>.el-tabs__header .el-tabs__item.is-active {
+    background-color: #fff;
+  }
+
+  .el-tabs__header {
+    margin-bottom: 0;
+  }
+}
+
+.el-drawer__header {
+  span {
+    font-size: 18px;
+    color: #444;
+    font-weight: 600;
+  }
+}
+
+.el-drawer__container {
+  background-color: rgba($color: #000000, $alpha: 0.6);
+}
