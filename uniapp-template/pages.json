@@ -1,0 +1,66 @@
+{
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		}, {
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		}, {
+			"path": "pages/category/category",
+			"style": {
+				"navigationBarTitleText": "课程分类"
+			}
+		}, {
+			"path": "pages/study/study",
+			"style": {
+				"navigationBarTitleText": "我的课程"
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#ACB3CA",
+		"selectedColor": "#383838",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/home/home",
+				"iconPath": "static/icon/home1.png",
+				"selectedIconPath": "static/icon/home2.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/category/category",
+				"iconPath": "static/icon/sort1.png",
+				"selectedIconPath": "static/icon/sort2.png",
+				"text": "分类"
+			},
+			{
+				"pagePath": "pages/study/study",
+				"iconPath": "static/icon/study1.png",
+				"selectedIconPath": "static/icon/study2.png",
+				"text": "学习"
+			},
+			{
+				"pagePath": "pages/my/my",
+				"iconPath": "static/icon/my1.png",
+				"selectedIconPath": "static/icon/my2.png",
+				"text": "我的"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "项目模板",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom"
+	}
+}

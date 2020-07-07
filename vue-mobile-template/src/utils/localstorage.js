@@ -8,7 +8,7 @@ let db = {
   get(key) {
     return localStorage.getItem(key);
   },
-  getJson(key, defaultValue = {}) {
+  getJSON(key, defaultValue = {}) {
     return JSON.parse(localStorage.getItem(key)) || defaultValue;
   },
   remove(key) {

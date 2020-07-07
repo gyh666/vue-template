@@ -1,24 +1,25 @@
 import Vue from "vue";
 import App from "./App.vue";
-import router from "@/router";
-import store from "@/store";
-
-import "@css/index.scss";
-import "./icons";
-
-// 页面标题动态改变
-import VueWechatTitle from "vue-wechat-title";
-Vue.use(VueWechatTitle);
-
-// 自适应 适配
+import router from "./router";
+import store from "./store";
 import "lib-flexible";
 
+// common css
+import "./styles/common.less";
+// 自动注册全局的组件
+import "@/components/global";
+// vant
+import "./plugins/vant";
+// request
+import * as api from "@/api";
+Vue.prototype.$api = api;
 // permission control
 import "./permission";
-
-import request from "@/api/request";
-Vue.prototype.$get = request.get;
-Vue.prototype.$post = request.post;
+// 全局过滤器
+import * as filterTool from "./utils/filter";
+Object.keys(filterTool).forEach(key => {
+  Vue.filter(key, filterTool[key]);
+});
 
 Vue.config.productionTip = false;
 

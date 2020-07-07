@@ -1,4 +1,4 @@
-import service from "./http";
+import service from "./axios";
 
 const request = {
   get(url) {

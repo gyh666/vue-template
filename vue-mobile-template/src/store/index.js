@@ -1,22 +1,24 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import getters from "./getters";
 import db from "@/utils/localstorage";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: db.getJson("user") || {}
+    userinfo: db.getJSON("userinfo") || {}
   },
   mutations: {
-    setUser(state, prop) {
-      state.user = prop;
-      db.saveJSON("user", prop);
+    SET_USERINFO(state, val) {
+      state.userinfo = val;
+      db.saveJSON("userinfo", val);
     }
   },
   actions: {
-    userAction({ commit }, arg) {
-      commit("setUser", arg);
+    setUserinfo: ({ commit }, arg) => {
+      commit("SET_USERINFO", arg);
     }
-  }
+  },
+  getters
 });

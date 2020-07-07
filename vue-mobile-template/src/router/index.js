@@ -1,59 +1,67 @@
 import Vue from "vue";
-import Router from "vue-router";
-import Home from "@/views/home/Home.vue";
+import VueRouter from "vue-router";
+import MainLayout from "../layout/MainLayout.vue";
+Vue.use(VueRouter);
 
-Vue.use(Router);
+const routes = [
+  {
+    path: "/",
+    redirect: "/home",
+    component: MainLayout,
+    children: [
+      {
+        path: "/home",
+        name: "home",
+        meta: {
+          title: "首页"
+        },
+        component: () =>
+          import(/* webpackChunkName: "home" */ "@/views/Home.vue")
+      },
+      {
+        path: "/list",
+        name: "list",
+        meta: {
+          title: "列表"
+        },
+        component: () =>
+          import(/* webpackChunkName: "list" */ "@/views/list/List.vue")
+      }
+    ]
+  },
+  {
+    path: "/login",
+    name: "login",
+    meta: {
+      title: "登录"
+    },
+    component: () =>
+      import(/* webpackChunkName: "login" */ "@/views/login-module/Login.vue")
+  },
+  {
+    path: "*",
+    name: "notFound",
+    meta: {
+      title: "404"
+    },
+    component: () =>
+      import(/* webpackChunkName: "notFound" */ "@/views/Error.vue")
+  },
+  {
+    path: "/forbidden",
+    name: "forbidden",
+    meta: {
+      title: "403"
+    },
+    component: () =>
+      import(/* webpackChunkName: "forbidden" */ "@/views/Error.vue")
+  }
+];
 
-const originalPush = Router.prototype.push;
-Router.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err);
-};
-
-const router = new Router({
+const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: [
-    {
-      path: "/",
-      component: Home,
-      redirect: "/home"
-    },
-    {
-      path: "/home",
-      name: "home",
-      component: Home,
-      meta: {
-        title: "首页"
-      }
-    },
-    {
-      path: "/login",
-      name: "login",
-      meta: {
-        title: "登录"
-      },
-      component: () =>
-        import(/* webpackChunkName: "login" */ "@/views/login/Login.vue")
-    },
-    {
-      path: "/404",
-      name: "undefined",
-      meta: {
-        title: "404"
-      },
-      component: () =>
-        import(/* webpackChunkName: "404" */ "@/views/error/404.vue")
-    },
-    {
-      path: "/401",
-      meta: {
-        title: "401"
-      },
-      name: "denied",
-      component: () =>
-        import(/* webpackChunkName: "404" */ "@/views/error/401.vue")
-    }
-  ]
+  routes
 });
 
 export default router;
