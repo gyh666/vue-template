@@ -1,4 +1,4 @@
-import router from "./router";
+import router from "@/router";
 import { Notify } from "vant";
 import { getToken } from "@/utils/auth";
 //引入 nprogress

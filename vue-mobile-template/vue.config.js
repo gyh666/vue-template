@@ -1,13 +1,22 @@
+/*
+ * @Description: 
+ * @Version: 
+ * @Author: 
+ * @Date: 2020-11-30 11:27:30
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-30 16:01:14
+ */
 // vue.config.js
 const path = require("path");
 const CompressionPlugin = require("compression-webpack-plugin");
 const {
   NODE_ENV,
-  VUE_APP_BASEURL
+  VUE_APP_BASE,
+  VUE_APP_GATEWAY
 } = process.env;
 module.exports = {
-  publicPath: "/",
-  outputDir: "dist",
+  publicPath: VUE_APP_BASE,
+  outputDir: NODE_ENV === "production" ? "h5" : "dist",
   assetsDir: "assets",
   lintOnSave: true,
   productionSourceMap: false, // 生产环境是否生成 SourceMap
@@ -23,7 +32,7 @@ module.exports = {
     hotOnly: true, //是否热更新
     proxy: {
       "/api": {
-        target: VUE_APP_BASEURL,
+        target: VUE_APP_GATEWAY,
         changeOrigin: true,
         ws: true,
         pathRewrite: {

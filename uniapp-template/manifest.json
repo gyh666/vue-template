@@ -78,6 +78,22 @@
     "h5" : {
         "devServer" : {
             "https" : false
+        },
+        "devServer" : {
+            "port" : 8000,
+            "disableHostCheck" : true,
+            "proxy" : {
+                "/api" : {
+                    // "target" : "https://www.yingcaibang.cn/gateway", //正式环境
+                    "target" : "https://ycbuniapp.edtsoft.com/gateway", //测试环境
+                    "changeOrigin" : true,
+                    "secure" : false,
+                    "pathRewrite" : {
+                        "^/api" : "/"
+                    }
+                }
+            },
+            "https" : true
         }
     }
 }

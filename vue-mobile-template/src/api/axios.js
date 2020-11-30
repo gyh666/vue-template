@@ -5,10 +5,12 @@ import { getToken, removeToken } from "@/utils/auth";
 
 const service = axios.create({
   baseURL: process.env.NODE_ENV === "development" ? "/api" : "/",
-  timeout: 5000 // 请求超时时间
+  timeout: 10000 // 请求超时时间
 });
 
 let loading = null;
+// 设置不需要加载动画 白名单
+import whiteList from "./whiteList";
 
 // request拦截器
 service.interceptors.request.use(
@@ -16,11 +18,19 @@ service.interceptors.request.use(
     if (getToken()) {
       config.headers.token = getToken();
     }
-    loading = Toast.loading({
-      message: "加载中...",
-      forbidClick: true,
-      loadingType: "spinner"
-    });
+    // 在请求时先展示加载框
+    if (
+      whiteList
+        .toString()
+        .toLowerCase()
+        .indexOf(config.url.toString().toLowerCase()) === -1
+    ) {
+      loading = Toast.loading({
+        message: "加载中...",
+        forbidClick: true,
+        loadingType: "spinner"
+      });
+    }
     return config;
   },
   error => {
@@ -32,15 +42,14 @@ service.interceptors.request.use(
 // respone拦截器
 service.interceptors.response.use(
   response => {
-    // 请求响应后关闭加载框
-    if (loading) loading.clear();
-    processStatus(response.data.code);
+    console.log(response);
+    if (loading) loading.clear(); // 请求响应后关闭加载框
+    processStatus(response.data.code, response.data.msg);
     return response;
   },
   error => {
     if (error.response) {
-      // 请求响应后关闭加载框
-      if (loading) loading.clear();
+      if (loading) loading.clear(); // 请求响应后关闭加载框
       processStatus(error.response.status);
     }
     // 返回接口返回的错误信息
@@ -48,8 +57,8 @@ service.interceptors.response.use(
   }
 );
 
-const processStatus = data => {
-  switch (data) {
+const processStatus = (code, msg = "系统错误") => {
+  switch (code) {
     case 304:
       Notify({ type: "warning", message: "异地登录，请先登录账号" });
       router.push({ name: "login" });
@@ -84,6 +93,7 @@ const processStatus = data => {
       });
       break;
     default:
+      Toast(msg);
       break;
   }
 };

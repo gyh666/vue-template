@@ -1,4 +1,12 @@
-let db = {
+/*
+ * @Description: localocalStorage存储
+ * @Version: gyh
+ * @Author: 1.0
+ * @Date: 2020-11-30 11:27:30
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-30 15:07:50
+ */
+const db = {
   save(key, value) {
     localStorage.setItem(key, value);
   },
